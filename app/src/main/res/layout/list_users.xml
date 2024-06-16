@@ -21,6 +21,7 @@
                 android:id="@+id/btn_delete"
                 android:layout_width="25dp"
                 android:layout_height="30dp"
+                android:background="@drawable/ic_bin"
                 android:layout_alignParentRight="true"/>
 
             <Button
@@ -28,9 +29,10 @@
                 android:layout_width="25dp"
                 android:layout_height="30dp"
                 android:layout_alignStart="@+id/btn_delete"
-                android:layout_marginStart="-69dp"
-                android:layout_marginLeft="-94dp"
-                android:layout_toRightOf="@id/btn_delete" />
+                android:layout_marginStart="-45dp"
+                android:layout_marginLeft="-70dp"
+                android:layout_toRightOf="@id/btn_delete"
+                android:background="@drawable/ic_pencil" />
         </RelativeLayout>
         <TextView
             android:id="@+id/text_reg"
