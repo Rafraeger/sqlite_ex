@@ -18,7 +18,7 @@
         android:background="@drawable/baseline_person_add_24"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="21dp"/>
+        android:layout_margin="20dp"/>
 
 
 
