@@ -24,9 +24,9 @@ public class Helper extends SQLiteOpenHelper {
         final String SQL_CREATE_TABLE = "CREATE TABLE " + TABLE_USERS + " ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + "name TEXT NOT NULL, "
-                + "reg INTEGER NOT NULL, "
+                + "reg TEXT NOT NULL, "
                 + "email TEXT NOT NULL, "
-                + "phone INTEGER NOT NULL)";
+                + "phone TEXT NOT NULL)";
         sqLiteDatabase.execSQL(SQL_CREATE_TABLE);
     }
 
@@ -56,7 +56,7 @@ public class Helper extends SQLiteOpenHelper {
         return list;
     }
 
-    public void insert(String name, int reg, String email, int phone) {
+    public void insert(String name, String reg, String email, String phone) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("name", name);
@@ -67,7 +67,7 @@ public class Helper extends SQLiteOpenHelper {
     }
 
 
-    public void update(int id, String name, int reg, String email, int phone) {
+    public void update(int id, String name, String reg, String email, String phone) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("name", name);

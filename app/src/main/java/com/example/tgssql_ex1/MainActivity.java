@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnDialogAdd;
     private ListView listView;
     private AlertDialog.Builder dialog;
+    private TextView textIsEmpty;
     private List<Data> lists = new ArrayList<>();
     private Adapter adapter;
     private Helper db = new Helper(this);
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.list_item);
         adapter = new Adapter(this, lists);
+        textIsEmpty = findViewById(R.id.text_is_empty);
         listView.setAdapter(adapter);
 
         btnDialogAdd = findViewById(R.id.btn_dialog_add);
@@ -77,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Silahkan isi semua data", Toast.LENGTH_SHORT).show();
             } else {
                 try {
-                    int reg = Integer.parseInt(editreg.getText().toString());
-                    int phone = Integer.parseInt(editphone.getText().toString());
+                    String reg = editreg.getText().toString();
+                    String phone = editphone.getText().toString();
                     db.insert(editname.getText().toString(), reg, editemail.getText().toString(), phone);
                     dialog.dismiss();
                     getData(); // Refresh the list
@@ -116,8 +119,10 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Silahkan isi semua data", Toast.LENGTH_SHORT).show();
             } else {
                 try {
-                    int reg = Integer.parseInt(editreg.getText().toString());
-                    int phone = Integer.parseInt(editphone.getText().toString());
+//                    int reg = Integer.parseInt(editreg.getText().toString());
+//                    int phone = Integer.parseInt(editphone.getText().toString());
+                    String reg = editreg.getText().toString();
+                    String phone = editphone.getText().toString();
                     db.update(Integer.parseInt(data.getId()), editname.getText().toString(), reg, editemail.getText().toString(), phone);
                     dialog.dismiss();
                     getData(); // Refresh the list
@@ -152,6 +157,13 @@ public class MainActivity extends AppCompatActivity {
             data.setEmail(email);
             data.setPhone(phone);
             lists.add(data);
+        }
+        if (lists.isEmpty()) {
+            textIsEmpty.setVisibility(View.VISIBLE);
+            listView.setVisibility(View.GONE);
+        } else {
+            textIsEmpty.setVisibility(View.GONE);
+            listView.setVisibility(View.VISIBLE);
         }
         adapter.notifyDataSetChanged();
     }
